@@ -1,8 +1,8 @@
-#include <stdio.h>
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
-    fprintf(stdout, "Hello Word");
+    std::cout << "Hello Word" << std::endl;
     return 0;
 }
 
