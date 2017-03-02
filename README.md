@@ -1,3 +1,3 @@
 # Sandbox repository
 
-This is the sandbox repository to try thins out.
+This is the sandbox repository to try things out.
