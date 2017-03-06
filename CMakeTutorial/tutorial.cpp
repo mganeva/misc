@@ -30,7 +30,12 @@ int main(int argc, char *argv[]) {
         fprintf(stdout, "Usage: %s number\n", argv[0]);
         return 1;
     }
-
+    /*
+    int sum = 0, value = 0;
+    while(std::cin >> value)
+        sum += value;
+    std::cout << "Sum is: " << sum << std::endl;
+*/
     double inputVal = atof(argv[1]);
 #ifdef USE_MYMATH
     double outputVal = mysqrt(inputVal);
