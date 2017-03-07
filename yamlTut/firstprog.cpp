@@ -12,9 +12,7 @@ YAML::Emitter& operator << (YAML::Emitter& op, const Vec3& v) {
 int main() {
     YAML::Emitter out;
     out << YAML::BeginSeq;
-    out << "eggs";
-    out << "bread";
-    out << "milk";
+    out << "eggs" << "bread" << "milk";
     out << YAML::EndSeq;
     std::cout << "Here's the output YAML:\n" << out.c_str() << "\n" << std::endl;
 
@@ -89,6 +87,7 @@ int main() {
     YAML::Emitter manipulator;
     manipulator.SetIndent(4);
     manipulator.SetMapFormat(YAML::Flow);
+    manipulator << v;
 
     std::cout << "Here's the output YAML:\n" << manipulator.c_str() << "\n" << std::endl;
 
@@ -118,6 +117,9 @@ int main() {
 
     std::ofstream fout("Studenten.yaml");
     fout << exercise.c_str();
+    fout << "\n";
+    fout << out.c_str();
+    fout << "\n";
 
 
     YAML::Node primes = YAML::Load("[2, 3, 5, 7, 11]");
@@ -128,9 +130,21 @@ int main() {
     primes.push_back(13);
     assert(primes.size() == 6);
 
+    YAML::Emitter conv;
+    conv << YAML::BeginMap;
     YAML::Node lineup = YAML::Load("{1B: Prince Fieder, 2B: Ricky Weeks, LF: Ryan Braun}");
     for(YAML::const_iterator it = lineup.begin(); it != lineup.end(); ++it) {
         std::cout << "Playing at "  << it->first.as<std::string>() << " is " << it->second.as<std::string>() << std::endl;
+        conv << YAML::Key << it->first << YAML::Value << it->second;
+    }
+
+    conv << YAML::EndMap;
+
+    fout << conv.c_str();
+
+    YAML::Node intro = YAML::LoadFile("Studenten.yaml");
+    if(intro["Pruefungen"]) {
+        std::cout << "Pruefungen: " << intro["Pruefungen"].as<std::string>()
     }
 
     return 0;
