@@ -81,7 +81,8 @@ int main() {
     YAML::Emitter oper;
     oper << v;
 
-    std::cout << "Here's the output YAML:\n" << oper.c_str() << "\n" << std::endl;
+
+
 
 
     YAML::Emitter manipulator;
