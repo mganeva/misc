@@ -7,8 +7,13 @@ double mysqrt(double val) {
     return sqrt(val/2);
     */
     double result;
-#if defined (HAVE_LOG) && defined (HAVE_EXP)
-    result = exp(log(x)*0.5);
+
+#ifdef HAVE_LOG
+    std::cout << "smth wrong with defined" << std::endl;
+#endif
+
+#if(defined (HAVE_LOG) && defined (HAVE_EXP))
+    result = exp(log(val)*0.5);
 #else
     result = sqrt(val/2);
 #endif
